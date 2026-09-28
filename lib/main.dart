@@ -1,71 +1,27 @@
-import 'package:flutter/material.dart'; //UI Library
+import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'form_page.dart';
 
-void main() => runApp(MyApp()); //entry point
 
-class FirstScreen extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {// describe what to show on our app
-    return Scaffold(
-      appBar: AppBar(title: Text('My First App')), 
-      body:Center(
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children:[
-              Icon(Icons.star, size: 40),
-              SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Icon(Icons.thumb_up_alt_outlined),
-                  Icon(Icons.thumb_down_alt_outlined)
-                ],
-              ),
-              SizedBox(height: 10),
-              Text('Helluuu flaatttt ka'),
-              SizedBox(height: 10),
-              ElevatedButton(onPressed:(){
-                Navigator.push(
-                  context, 
-                  MaterialPageRoute(builder: (context)=> SecondScreen()),
-                );
-              }, 
-              child: Text('Go to Second Screen'))
-            ]
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
 
-        ), // Column/Vertical layout
-      )//center
-    ); // MaterialApp/ScaffoldS
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform);
 
-  }
+    runApp(const MyApp());
 }
 
+class MyApp extends StatelessWidget{
+  const MyApp({super.key});
 
-class SecondScreen extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('SecondScreen')),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: ()=> Navigator.pop, child: Text('Go Back'))
-      ),
+
+@override
+Widget build(BuildContext context){
+  return const MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home:FormPage(),
     );
   }
 }
-
-
-class MyApp extends StatelessWidget { // A widget w/ no changes, pure display
-@override
-  Widget build(BuildContext context) {
-   
-   return MaterialApp(
-    home: FirstScreen()
-   );
-  }
-}
-
-
-
-
-
-
