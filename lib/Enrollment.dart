@@ -36,7 +36,7 @@ class StepSis1 extends StatelessWidget {
                   sect.text.trim().isEmpty ||
                   cou.text.trim().isEmpty) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Fill in all fields')),
+                  SnackBar(content: Text('Lagyan mo lahat bulag kaba')),
                 );
               } else {
                 Navigator.push(
@@ -174,7 +174,7 @@ class StepSis3 extends StatelessWidget {
       );
     }
   }
-
+//try ko lng
   @override
   Widget build(BuildContext context) {
     return Scaffold(
